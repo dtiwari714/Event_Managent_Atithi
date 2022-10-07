@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "408930845325",
+    "project_id": "atithi-91f68",
+    "storage_bucket": "atithi-91f68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408930845325:android:4e304b76c9c1dc164618c4",
+        "android_client_info": {
+          "package_name": "com.example.userseller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408930845325-k8q3jfds7d3c200iu9cm82l65f5ql6ff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmpJ9Ibqp3T70F4tvQl9njuV_wS1gWaxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408930845325-k8q3jfds7d3c200iu9cm82l65f5ql6ff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

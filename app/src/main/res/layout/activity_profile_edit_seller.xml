@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProfileEditSeller">
+    <ImageButton
+        android:id="@+id/selregbackBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+    <ImageButton
+        android:id="@+id/selgpsLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_gps_fixed_24"
+        android:layout_alignParentEnd="true"
+        android:background="@null"/>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/text_REgister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Edit Seller"
+            android:textColor="#D32F2F"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/selprofilePic"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_baseline_person_24"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+            <EditText
+                android:id="@+id/selfullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selprofilePic"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+                android:drawablePadding="5dp"
+                android:hint="Full Name"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/selShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selfullname"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_store_24"
+                android:drawablePadding="5dp"
+                android:hint="Shop Name"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/selPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selShop"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_smartphone_24"
+                android:drawablePadding="5dp"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/selshipfee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selPhone"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_smartphone_24"
+                android:drawablePadding="5dp"
+                android:hint="Delivery Fee"
+                android:inputType="numberDecimal"
+                android:padding="10dp" />
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_below="@id/selshipfee">
+                <EditText
+                    android:id="@+id/selcountry"
+                    android:layout_below="@id/selPhone"
+                    android:hint="Country"
+                    android:padding="10dp"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawablePadding="5dp"
+                    android:layout_margin="5dp"
+                    android:inputType="textPostalAddress"
+                    android:background="@drawable/shape_rect02"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/selstate"
+                    android:layout_alignLeft="@id/country"
+                    android:hint="State"
+                    android:padding="10dp"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawablePadding="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:inputType="textPostalAddress"
+                    android:background="@drawable/shape_rect02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/selcity"
+                    android:layout_below="@id/selfullAddress"
+                    android:hint="City"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_baseline_location_on_24"
+                    android:drawablePadding="5dp"
+                    android:layout_margin="5dp"
+                    android:inputType="textPostalAddress"
+                    android:background="@drawable/shape_rect02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/selfullAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:drawablePadding="5dp"
+                android:hint="Address"
+                android:inputType="textPostalAddress|textMultiLine"
+                android:padding="10dp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/shopOpenSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selfullAddress"
+                android:layout_margin="5dp"
+                android:text="Shop Open" />
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shopOpenSwitch"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_rect02"
+                android:text="Update" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
