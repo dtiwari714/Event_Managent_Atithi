@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -28,8 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -47,12 +51,14 @@ public class MainUser extends AppCompatActivity {
     private ArrayList<ModelShop> shopsList;
     private AdapterShop adapterShop;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
+        initSlider();
 
         nameTv=findViewById(R.id.nameTv);
         logoutBtn=findViewById(R.id.logoutbtn);
@@ -107,6 +113,31 @@ public class MainUser extends AppCompatActivity {
                 showOrdersUI();
             }
         });
+    }
+
+    private void initSlider() {
+        // Java
+        ImageCarousel carousel = findViewById(R.id.carousel);
+
+// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
+        carousel.registerLifecycle(getLifecycle());
+
+        List<CarouselItem> list = new ArrayList<>();
+
+// Image URL with caption
+        list.add(
+                new CarouselItem(
+                        "https://img.freepik.com/premium-vector/luxury-ornamental-mandala-background-with-arabic-islamic-east-pattern-style-premium_118503-1940.jpg?w=1380",
+                        "Photo by Aaron Wu on Unsplash"
+                )
+        );
+        // Just image URL
+        list.add(
+                new CarouselItem(
+                        "https://img.freepik.com/premium-vector/indian-wedding-invitation-card-template_1302-25555.jpg?w=900"
+                )
+        );
+        carousel.setData(list);
     }
 
     private void showShopsUI() {

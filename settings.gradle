@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-    }
+      }
 }
 rootProject.name = "User&Seller"
 include ':app'

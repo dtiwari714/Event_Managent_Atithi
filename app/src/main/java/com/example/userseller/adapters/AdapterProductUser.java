@@ -232,12 +232,12 @@ public class AdapterProductUser extends RecyclerView.Adapter<AdapterProductUser.
             @Override
             public void onClick(View v) {
                 String title=titleTv.getText().toString().trim();
-                String priceEach=titleTv.getText().toString().trim().replace("$","");
-                String price=titleTv.getText().toString().trim().replace("","");
-                String quantity=titleTv.getText().toString().trim();
+                String priceEach=price;
+                String totalPrice=finalPriceTv.getText().toString().trim().replace("$","");
+                String quantity=quantityTv.getText().toString().trim();
 
                 //add to db
-                addToCart(productId,title,priceEach,price,quantity);
+                addToCart(productId,title,priceEach,totalPrice,quantity);
                 dialog.dismiss();
             }
         });

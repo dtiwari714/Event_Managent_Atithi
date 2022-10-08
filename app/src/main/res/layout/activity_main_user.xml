@@ -53,15 +53,16 @@
             android:textStyle="bold"
             android:layout_toEndOf="@+id/profilePic"
             android:textColor="@color/white"/>
+
         <TextView
+            android:id="@+id/emailTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/emailTv"
-            android:text="Email:"
-            android:textStyle="bold"
             android:layout_below="@+id/nameTv"
             android:layout_toEndOf="@+id/profilePic"
-            android:textColor="@color/white"/>
+            android:text="Email:"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,10 +102,26 @@
         </LinearLayout>
 
     </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbarRl"
+            app:cardCornerRadius="10dp">
+
+            <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:id="@+id/carousel"
+                android:layout_width="match_parent"
+                app:showNavigationButtons="false"
+                app:showCaption="false"
+                app:autoPlay="true"
+                android:layout_height="170dp" />
+        </androidx.cardview.widget.CardView>
     <!--shop ui-->
     <RelativeLayout
         android:id="@+id/shopsRl"
-        android:layout_below="@+id/toolbarRl"
+        android:layout_below="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
