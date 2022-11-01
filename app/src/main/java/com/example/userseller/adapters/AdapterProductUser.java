@@ -260,10 +260,10 @@ public class AdapterProductUser extends RecyclerView.Adapter<AdapterProductUser.
         
         Boolean b=easyDB.addData("Item_Id",itemId)
                 .addData("Item_PID",productId)
-                .addData("Item_Name",productId)
-                .addData("Item_Price_Each",productId)
-                .addData("Item_Price",productId)
-                .addData("Item_Quantity",productId)
+                .addData("Item_Name",title)
+                .addData("Item_Price_Each",priceEach)
+                .addData("Item_Price",price)
+                .addData("Item_Quantity",quantity)
                 .doneDataAdding();
 
         Toast.makeText(context, "Adding To Cart....", Toast.LENGTH_SHORT).show();

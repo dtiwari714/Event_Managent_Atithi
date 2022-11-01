@@ -3,11 +3,13 @@ package com.example.userseller.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.userseller.R;
+import com.example.userseller.adapters.AdapterOrderUser;
 import com.example.userseller.adapters.AdapterShop;
+import com.example.userseller.models.ModelOrderUser;
 import com.example.userseller.models.ModelShop;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,13 +47,18 @@ public class MainUser extends AppCompatActivity {
     private ImageButton logoutBtn,editProfileBtn;
     private CircleImageView profilePic;
     private RelativeLayout shopRl,ordersRl;
-    private RecyclerView shopsRv;
+    private ImageCarousel carousel;
+    private RecyclerView shopsRv,ordersRv;
+    private CardView banner;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
     private ArrayList<ModelShop> shopsList;
     private AdapterShop adapterShop;
+
+    private ArrayList<ModelOrderUser> orderList;
+    private AdapterOrderUser adapterOrderUser;
 
 
     @Override
@@ -64,11 +73,14 @@ public class MainUser extends AppCompatActivity {
         logoutBtn=findViewById(R.id.logoutbtn);
         editProfileBtn=findViewById(R.id.editProfileBtn);
         profilePic=findViewById(R.id.profilePic);
+        ordersRv=findViewById(R.id.ordesRv);
         emailTv=findViewById(R.id.emailTv);
         phoneTv=findViewById(R.id.phoneTv);
         tabOrdersTv=findViewById(R.id.tabOrdersTv);
         tabShopsTv=findViewById(R.id.tabShopsTv);
+        banner=findViewById(R.id.banner);
         shopRl=findViewById(R.id.shopsRl);
+        carousel=findViewById(R.id.carousel);
         ordersRl=findViewById(R.id.ordersRl);
         shopsRv=findViewById(R.id.shopsRv);
 
@@ -144,6 +156,7 @@ public class MainUser extends AppCompatActivity {
         //show shop ui hide the order ui
         shopRl.setVisibility(View.VISIBLE);
         ordersRl.setVisibility(View.GONE);
+        banner.setVisibility(View.VISIBLE);
 
         tabShopsTv.setTextColor(getResources().getColor(R.color.black));
         tabShopsTv.setBackgroundResource(R.drawable.shape_rect04);
@@ -155,6 +168,7 @@ public class MainUser extends AppCompatActivity {
         //show orders ui and hide orders ui
         shopRl.setVisibility(View.GONE);
         ordersRl.setVisibility(View.VISIBLE);
+        banner.setVisibility(View.GONE);
 
         tabShopsTv.setTextColor(getResources().getColor(R.color.white));
         tabShopsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
@@ -227,6 +241,7 @@ public class MainUser extends AppCompatActivity {
                             }
                             //load only those shops that are in the city of user
                             loadShops(City);
+                            loadOrders();
                         }
                     }
 
@@ -235,6 +250,51 @@ public class MainUser extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void loadOrders() {
+        orderList=new ArrayList<>();
+        //get orders
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    orderList.clear();
+                    for (DataSnapshot ds:snapshot.getChildren()){
+                        String uid=""+ds.getRef().getKey();
+
+                        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Users").child(uid).child("Orders");
+                        ref.orderByChild("orderBy").equalTo(firebaseAuth.getUid())
+                                .addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            for (DataSnapshot ds:snapshot.getChildren()){
+                                                ModelOrderUser modelOrderUser=ds.getValue(ModelOrderUser.class);
+
+                                                //add to list
+                                                orderList.add(modelOrderUser);
+                                            }
+                                            //setup adapter
+                                            adapterOrderUser=new AdapterOrderUser(MainUser.this,orderList);
+                                            //set to recycler view
+                                            ordersRv.setAdapter(adapterOrderUser);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void loadShops(final String myCity) {
